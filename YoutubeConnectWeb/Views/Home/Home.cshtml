@@ -1,0 +1,35 @@
+﻿@model YoutubeConnectWeb.Models.RoomSetupModel
+
+@{
+    ViewBag.Title = "Log in";
+      
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<section id="loginForm">
+<h2>Create room</h2>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.roomName)
+                @Html.TextBoxFor(m => m.roomName)
+                @Html.ValidationMessageFor(m => m.roomName)
+            </li>
+       
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+}
+</section>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

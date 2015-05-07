@@ -1,0 +1,56 @@
+﻿@using YoutubeConnectWeb.Models
+@model YoutubeConnectWeb.Models.SendJsonRoomModel
+@{
+
+    ViewBag.Title = "Log in";
+    ViewBag.jsonData= string.Empty;
+      
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<section id="loginForm">
+    <h2>Create room</h2>
+    @if (!IsPost)
+    {
+        using (Html.BeginForm("Control", "Room", FormMethod.Post))
+        {
+
+<fieldset>
+         <legend>Log in Form</legend>
+         <ol>
+             <li>
+                @if (ViewBag.jsonDataPre != string.Empty)
+                {
+                    
+                      @Html.HiddenFor(m => m.jsonData);
+                   
+                }
+                else
+                {
+                     @Html.HiddenFor(m => m.jsonData)
+                }
+                
+
+             </li>
+
+         </ol>
+         <input type="submit" value="Log in"/>
+     </fieldset>
+        }
+    }
+    else
+    {
+        if (ViewBag.jsonDataPre != string.Empty)
+        {
+            @Html.LabelForModel(new SendJsonRoomModel(){jsonData = ViewBag.jsonData});
+        }
+
+    }
+</section>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

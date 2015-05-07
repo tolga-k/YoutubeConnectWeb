@@ -1,0 +1,35 @@
+﻿@using Newtonsoft.Json
+@model IEnumerable<YoutubeConnectWeb.Models.UrlData>
+@{
+    
+    ViewBag.Title = "Manage room";
+      
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<section id="roominfo">
+    @foreach (var item in Model)
+    {
+        <a href="Manage?roomName=@item.Roomname&id=@item.id">@item.url + ": "+ @item.Roomname</a>
+        //      @Html.DisplayFor(urld => item.id)
+    }
+    <br/>
+    @if (Model.Any())
+    {
+
+        @JsonConvert.SerializeObject(Model)
+        ;
+
+    }
+    <br/>
+    @Html.ActionLink("Room", "Control", new {jsonData = JsonConvert.SerializeObject(Model)});
+</section>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
